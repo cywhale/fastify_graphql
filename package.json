@@ -1,0 +1,28 @@
+{
+	"name": "fastify_graphql",
+	"type": "module",
+	"version": "0.1.0",
+	"description": "fastify serve graphql API",
+	"main": "index.js",
+	"scripts": {
+		"serv-species": "nodemon ./src/services/species.js",
+		"serv-trait": "nodemon ./src/services/trait.js",
+                "gateway": "nodemon ./src/index.js",
+                "start": "concurrently \"npm:serv-*\""
+	},
+	"keywords": [
+		"fastify",
+		"GraphQL"
+	],
+	"repository": "https://github.com/cywhale/fastify_graphql",
+	"author": "cywhale",
+	"license": "MIT",
+	"dependencies": {
+		"fastify": "^4.9.2",
+		"mercurius": "^11.0.1"
+	},
+	"devDependencies": {
+		"concurrently": "^7.4.0",
+		"nodemon": "^2.0.20"
+	}
+}
