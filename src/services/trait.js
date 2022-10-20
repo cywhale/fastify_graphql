@@ -8,12 +8,24 @@ query Q1($name: String!) {
     id
     keystr
     sex
+    parent {
+     ...traitkey
+     parent {
+       ...traitkey
+     }
+    }
     taxon {
       name
       sexTraitInfo
     }
   }
-variables: {"name":"B xyz"}*/
+}
+
+fragment traitkey on TraitNode {
+  id
+  keystr
+}
+variables: {"name":"C tuv"}*/
 
 const traits = [
     {
@@ -64,6 +76,11 @@ const traits = [
       parent: [{
         id: 'C_02a',
         keystr: 'Length of caudal ramus nearly twice width',
+        parent: [{
+          id: 'C_01a',
+          keystr: 'Male',
+          parent: []
+        }]
       }]
     }
 ]
@@ -79,6 +96,7 @@ const schema = `
     type TraitNode {
       id: String
       keystr: String
+      parent: [TraitNode]
     }
     type Query @extends {
       getTraits(name: String!, sex: String): [Trait]
